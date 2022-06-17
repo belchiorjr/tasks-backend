@@ -35,9 +35,11 @@ pipeline{
             }
         }
         stage ('API Test') {
-            steps{             
-                git branch: 'main', credentialsId: 'github_login', url: 'https://github.com/belchiorjr/tasks-api-test'
-                bat 'mvn test'
+            steps{       
+                dir('api-test') {
+                    git branch: 'main', credentialsId: 'github_login', url: 'https://github.com/belchiorjr/tasks-api-test'
+                    bat 'mvn test'
+                }      
             }
         }
     }
